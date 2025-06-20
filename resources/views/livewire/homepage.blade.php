@@ -8,10 +8,14 @@
             <div class="flex flex-row gap-2">
                 <input wire:model="query" type="text" class="w-full p-3 rounded-lg bg-gray-200"
                        placeholder="search for books, authors, and more">
-                <button type="submit" class="bg-teal-600 text-white font-bold text-center rounded px-8 py-2">
+                <button type="submit"
+                        class="bg-teal-600 hover:bg-teal-600/60 transition cursor-pointer text-white font-bold text-center rounded px-8 py-2">
                     search
                 </button>
             </div>
+            @error('query')
+            <span class="error">{{ $message }}</span>
+            @enderror
             <div class="flex flex-row gap-4 mt-2">
                 <div>
                     <input type="radio" wire:model="type" name="type" id="book" value="book">
@@ -22,6 +26,9 @@
                     <label for="author" class="text-white font-bold">Author Search</label>
                 </div>
             </div>
+            @error('type')
+            <span class="error">{{ $message }}</span>
+            @enderror
         </form>
     </div>
 </div>

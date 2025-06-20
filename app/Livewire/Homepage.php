@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -22,6 +23,10 @@ class Homepage extends Component
     public function submit()
     {
         $this->validate();
-        dd('submitted');
+        if (!Auth::user()) {
+            $this->redirect(route('login'), navigate: true);
+        } else {
+            $this->redirect(route('search', ['query' => $this->query, 'type' => $this->type]), navigate: true);;
+        }
     }
 }
