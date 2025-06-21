@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -15,18 +16,23 @@ class Homepage extends Component
     public $type;
 
     #[Title('metareadr')]
-    public function render()
+    public function render(): object
     {
         return view('livewire.homepage');
     }
 
-    public function submit()
+    public function submit(): void
     {
         $this->validate();
+
+        Session::put('search_query', $this->query);
+        Session::put('search_type', $this->type);
+
         if (!Auth::user()) {
+            Session::put('url.intended', route('search'));
             $this->redirect(route('login'), navigate: true);
         } else {
-            $this->redirect(route('search', ['query' => $this->query, 'type' => $this->type]), navigate: true);;
+            $this->redirect(route('search'), navigate: true);
         }
     }
 }
