@@ -10,9 +10,11 @@ class Search extends Component
 {
     public $query;
     public $type;
+    public $page = 1;
+    public $hasMorePages = true;
 
     public searchForm $search;
-    public $results = [];
+    public $results;
 
     public function mount(): void
     {
@@ -27,10 +29,23 @@ class Search extends Component
         $this->search->query = $this->query ?? '';
         $this->search->type = $this->type ?? 'book';
 
+        $this->results = collect();
+
         if ($this->query) {
             $this->search->validate();
-            $this->results = $this->search->librarySearch();
+            $this->results = $this->search->librarySearch($this->page);
+            $this->hasMorePages = count($this->results) == 9;
         }
+    }
+
+    public function loadMore()
+    {
+        $this->page++;
+        $newResults = $this->search->librarySearch($this->page);
+
+        $this->hasMorePages = count($newResults) == 9;
+
+        $this->results = $this->results->merge($newResults);
     }
 
     public function render()

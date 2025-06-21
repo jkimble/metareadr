@@ -15,14 +15,13 @@ class searchForm extends Form
 
     public $results = [];
 
-    public function librarySearch()
+    public function librarySearch($page = 1)
     {
         $url = $this->type === 'author' ? 'https://openlibrary.org/search/authors.json' : 'https://openlibrary.org/search.json';
-        $page = request()->input('page', 1);
 
         $response = Http::get($url, [
             $this->type === 'author' ? 'q' : 'title' => $this->query,
-            'limit' => 5,
+            'limit' => 9,
             'page' => $page,
         ]);
 

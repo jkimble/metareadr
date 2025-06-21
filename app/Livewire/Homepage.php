@@ -30,9 +30,9 @@ class Homepage extends Component
 
         if (!Auth::user()) {
             Session::put('url.intended', route('search'));
-            $this->redirect(route('login'));
+            $this->redirect(route('login'), navigate: true);
         } else {
-            $this->redirect(route('search'));
+            $this->redirect(route('search'), navigate: true);;
         }
     }
 }
