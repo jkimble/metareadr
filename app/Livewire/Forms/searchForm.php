@@ -35,7 +35,7 @@ class searchForm extends Form
                 'User-Agent' => 'metareadr (metareadr@mail.metakimb.dev)'
             ])->get($url, $params);
         } catch (ConnectionException $e) {
-            $response = [];
+            $response = $e->getCode();
         }
 
         if ($response->successful()) {
