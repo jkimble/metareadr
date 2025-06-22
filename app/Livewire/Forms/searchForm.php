@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Forms;
 
-use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -27,26 +26,22 @@ class searchForm extends Form
         ];
 
         if ($this->type === 'book') {
-            $params['fields'] = 'title,author_name,work_count,ratings_count,first_publish_year,subject,first_sentence,isbn';
+            $params['fields'] = 'title,author_name,work_count,ratings_count,first_publish_year,subject,first_sentence,isbn,number_of_pages_median';
         }
 
-        try {
-            $response = Http::withHeaders([
-                'User-Agent' => 'metareadr (metareadr@mail.metakimb.dev)'
-            ])->get($url, $params);
-        } catch (ConnectionException $e) {
-            $response = $e->getCode();
-        }
+        $response = Http::withHeaders([
+            'User-Agent' => 'metareadr (metareadr@mail.metakimb.dev)'
+        ])->get($url, $params);
 
         if ($response->successful()) {
             if ($this->type === 'author') {
                 $this->results = collect($response->json('docs'))
                     ->filter(fn($author) => $author['work_count'] >= 5 &&
-                        (isset($author['ratings_average']) && $author['ratings_average'] >= 2))
+                        (isset($author['ratings_average']) && $author['ratings_average'] >= 1))
                     ->sortByDesc('ratings_average');
             } else {
                 $this->results = collect($response->json('docs'))
-                    ->filter(fn($book) => $book['ratings_count'] >= 2)->sortByDesc('ratings_count');
+                    ->filter(fn($book) => isset($book['ratings_count']) && $book['ratings_count'] >= 1);
             }
         } else {
             $this->results = [];
