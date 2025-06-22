@@ -9,4 +9,5 @@
     @if(isset($book['first_publish_year']))
         <p class="text-gray-300">Published: {{ $book['first_publish_year'] }}</p>
     @endif
+    {{ $book['ratings_count'] }}
 </article>

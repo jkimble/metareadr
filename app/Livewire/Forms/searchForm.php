@@ -40,9 +40,13 @@ class searchForm extends Form
 
         if ($response->successful()) {
             if ($this->type === 'author') {
-                $this->results = collect($response->json('docs'))->filter(fn($author) => $author['work_count'] >= 5);
+                $this->results = collect($response->json('docs'))
+                    ->filter(fn($author) => $author['work_count'] >= 5 &&
+                        (isset($author['ratings_average']) && $author['ratings_average'] >= 2))
+                    ->sortByDesc('ratings_average');
             } else {
-                $this->results = collect($response->json('docs'));
+                $this->results = collect($response->json('docs'))
+                    ->filter(fn($book) => $book['ratings_count'] >= 2)->sortByDesc('ratings_count');
             }
         } else {
             $this->results = [];
