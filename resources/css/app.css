@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import './global/structure.css';
 @import './global/typography.css';
+@import './global/buttons.css';
 @import './content/forms.css';
 
 @source '../views';

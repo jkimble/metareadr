@@ -9,4 +9,8 @@
         </p>
     @endif
     <p class="text-sm">Rating: {{ round($author['ratings_average'], 2) }}</p>
+    <div class="flex flex-row flex-nowrap gap-2">
+        <button class="btn btn-secondary btn-small">View Works</button>
+        <button class="btn btn-primary btn-small">Add Author to Library</button>
+    </div>
 </article>
