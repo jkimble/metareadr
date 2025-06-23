@@ -9,4 +9,14 @@
     @if(isset($book['first_publish_year']))
         <p class="text-gray-300">Published: {{ $book['first_publish_year'] }}</p>
     @endif
+    <div class="flex flex-row flex-nowrap gap-2 mt-4">
+        <x-content.button styling="secondary" class="btn-xs">
+            <x-icons.book/>
+            More Details
+        </x-content.button>
+        <x-content.button styling="primary" class="btn-xs">
+            <x-icons.heart/>
+            Add Book to Library
+        </x-content.button>
+    </div>
 </article>

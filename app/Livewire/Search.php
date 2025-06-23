@@ -71,6 +71,21 @@ class Search extends Component
         }
     }
 
+    public function saveBook($bookKey)
+    {
+        $user = Auth::user();
+
+        $savedBooks = $user->saved_books ?? [];
+
+        if (!in_array($bookKey, $savedBooks)) {
+            $savedBooks[] = $bookKey;
+            $user->saved_books = $savedBooks;
+            $user->save();
+
+            $this->dispatch('success', 'Book added to your library');
+        }
+    }
+
     public function render()
     {
         return view('livewire.search');
