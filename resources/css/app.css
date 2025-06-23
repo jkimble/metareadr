@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './global/structure.css';
 @import './global/typography.css';
 @import './content/forms.css';
 
