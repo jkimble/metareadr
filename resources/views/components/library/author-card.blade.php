@@ -10,11 +10,11 @@
     @endif
     <p class="text-sm">Rating: {{ round($author['ratings_average'], 2) }}</p>
     <div class="flex flex-row flex-nowrap gap-2 mt-4">
-        <x-content.button styling="secondary">
+        <x-content.button styling="secondary" class="btn-xs">
             <x-icons.book/>
             View Works
         </x-content.button>
-        <x-content.button styling="primary">
+        <x-content.button styling="primary" class="btn-xs">
             <x-icons.heart/>
             Add Author to Library
         </x-content.button>

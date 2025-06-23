@@ -1,11 +1,27 @@
 .btn {
-    @apply cursor-pointer;
+    @apply cursor-pointer border rounded font-semibold py-1 px-2 hover:font-bold transition-all flex items-center gap-1;
+
+    &.btn-xs {
+        @apply text-xs;
+    }
+
+    &.btn-sm {
+        @apply text-sm;
+    }
+
+    &.btn-lg {
+        @apply text-lg;
+    }
+
+    &.btn-xl {
+        @apply text-xl;
+    }
 
     &.btn-primary {
-        @apply border border-teal-500 rounded text-xs text-teal-500 font-semibold py-1 px-2 hover:bg-teal-500 hover:text-white hover:font-bold transition-all flex items-center gap-1;
+        @apply border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white;
     }
 
     &.btn-secondary {
-        @apply border border-blue-400 rounded text-xs text-blue-400 font-semibold py-1 px-2 hover:bg-blue-400 hover:text-white hover:font-bold transition-all flex items-center gap-1;
+        @apply border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white;
     }
 }
