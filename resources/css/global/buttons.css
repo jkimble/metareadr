@@ -2,10 +2,10 @@
     @apply cursor-pointer;
 
     &.btn-primary {
-        @apply border border-teal-500 rounded text-xs text-teal-500 font-semibold py-1 px-2 hover:bg-teal-500 hover:text-white hover:font-bold transition-all;
+        @apply border border-teal-500 rounded text-xs text-teal-500 font-semibold py-1 px-2 hover:bg-teal-500 hover:text-white hover:font-bold transition-all flex items-center gap-1;
     }
 
     &.btn-secondary {
-        @apply border border-blue-400 rounded text-xs text-blue-400 font-semibold py-1 px-2 hover:bg-blue-400 hover:text-white hover:font-bold transition-all;
+        @apply border border-blue-400 rounded text-xs text-blue-400 font-semibold py-1 px-2 hover:bg-blue-400 hover:text-white hover:font-bold transition-all flex items-center gap-1;
     }
 }
