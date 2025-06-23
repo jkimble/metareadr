@@ -15,7 +15,7 @@
             <x-icons.book/>
             View Works
         </x-content.button>
-        <x-content.button styling="primary" class="btn-xs">
+        <x-content.button styling="primary" class="btn-xs" wire:click="saveAuthor('{{ $author['key'] }}')">
             <x-icons.heart/>
             Add Author to Library
         </x-content.button>

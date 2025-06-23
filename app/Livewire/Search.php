@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\searchForm;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
@@ -46,6 +47,28 @@ class Search extends Component
         $this->hasMorePages = count($newResults) == 9;
 
         $this->results = $this->results->merge($newResults);
+    }
+
+    public function saveAuthor($authorKey)
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            $this->dispatch('error', 'You must be logged in to save authors');
+            return;
+        }
+
+        $savedAuthors = $user->saved_authors ?? [];
+
+        if (!in_array($authorKey, $savedAuthors)) {
+            $savedAuthors[] = $authorKey;
+            $user->saved_authors = $savedAuthors;
+            $user->save();
+
+            $this->dispatch('success', 'Author added to your library');
+        } else {
+            $this->dispatch('info', 'Author already in your library');
+        }
     }
 
     public function render()
