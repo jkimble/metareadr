@@ -75,6 +75,11 @@ class Search extends Component
     {
         $user = Auth::user();
 
+        if (!$user) {
+            $this->dispatch('error', 'You must be logged in to save books');
+            return;
+        }
+
         $savedBooks = $user->saved_books ?? [];
 
         if (!in_array($bookKey, $savedBooks)) {
@@ -83,6 +88,8 @@ class Search extends Component
             $user->save();
 
             $this->dispatch('success', 'Book added to your library');
+        } else {
+            $this->dispatch('info', 'Book already in your library');
         }
     }
 

@@ -1,7 +1,6 @@
 <div>
     <h1>Search for "{{ $query ?? 'undefined' }}"</h1>
     <x-content.container>
-        @dd($results)
         @if($results->isNotEmpty())
             <div class="search-results flex flex-row flex-wrap gap-4">
                 @if($type == 'book')
