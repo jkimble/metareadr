@@ -1,4 +1,4 @@
-@props(['styling', 'type' => null])
+@props(['styling', 'type' => null, 'link' => false])
 
 @php
     $styles = match ($styling) {
@@ -7,6 +7,14 @@
     }
 @endphp
 
-<button {{ $attributes->merge(['class' => $styles]) }}>
-    {{ $slot }}
-</button>
+@if ($link)
+    <a {{ $attributes->merge(['class' => $styles]) }}>
+        {{ $slot }}
+    </a>
+
+@else
+    <button {{ $attributes->merge(['class' => $styles]) }}>
+        {{ $slot }}
+    </button>
+
+@endif

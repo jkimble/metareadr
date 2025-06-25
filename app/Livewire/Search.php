@@ -13,7 +13,6 @@ class Search extends Component
     public $type;
     public $page = 1;
     public $hasMorePages = true;
-
     public searchForm $search;
     public $results;
 

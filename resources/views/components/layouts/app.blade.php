@@ -1,5 +1,11 @@
 <x-layouts.app.header :title="$title ?? null">
     <div class="container max-w-7xl mx-auto mt-20 px-8">
         {{ $slot }}
+        <div class="flex flex-row justify-end mt-4">
+            <x-content.button styling="primary" :link="true" href="{{ route('login') }}">
+                <x-icons.user/>
+                {{ Auth::check() ? 'Account' : 'Log In' }}
+            </x-content.button>
+        </div>
     </div>
 </x-layouts.app.header>
