@@ -15,19 +15,16 @@ class Search extends Component
     public $hasMorePages = true;
     public searchForm $search;
     public $results;
+    public $savedAuthors;
+    public $savedBooks;
 
     public function mount(): void
     {
-        if (Session::has('search_query')) {
-            $this->query = Session::get('search_query');
-        }
+        $this->query = Session::has('search_query') ? Session::get('search_query') : '';
+        $this->type = Session::has('search_type') ? Session::get('search_type') : 'book';
 
-        if (Session::has('search_type')) {
-            $this->type = Session::get('search_type');
-        }
-
-        $this->search->query = $this->query ?? '';
-        $this->search->type = $this->type ?? 'book';
+        $this->search->query = $this->query;
+        $this->search->type = $this->type;
 
         $this->results = collect();
 
@@ -36,6 +33,9 @@ class Search extends Component
             $this->results = $this->search->librarySearch($this->page);
             $this->hasMorePages = count($this->results) == 9;
         }
+
+        $this->savedAuthors = Auth::user()->saved_authors ?? [];
+        $this->savedBooks = Auth::user()->saved_books ?? [];
     }
 
     public function loadMore()

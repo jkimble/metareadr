@@ -1,4 +1,4 @@
-@props(['author'])
+@props(['author', 'savedAuthors' => []])
 
 <article
     class="flex-[0_1_32%] mb-4 p-4 bg-gray-800 border border-gray-800 text-white rounded hover:border-teal-500 transition">
@@ -15,9 +15,11 @@
             <x-icons.book/>
             View Works
         </x-content.button>
-        <x-content.button styling="primary" class="btn-xs" wire:click="saveAuthor('{{ $author['key'] }}')">
+        <x-content.button styling="primary" class="btn-xs"
+                          wire:click="saveAuthor('{{ $author['key'] }}')"
+                          :disabled="in_array($author['key'], $savedAuthors)">
             <x-icons.heart/>
-            Add Author to Library
+            {{ in_array($author['key'], $savedAuthors) ? 'Author in Library' : 'Add Author to Library' }}
         </x-content.button>
     </div>
 </article>

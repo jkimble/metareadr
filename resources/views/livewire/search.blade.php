@@ -9,7 +9,7 @@
                     @endforeach
                 @else
                     @foreach($results as $author)
-                        <x-library.author-card :author="$author"/>
+                        <x-library.author-card :savedAuthors="$savedAuthors" :author="$author"/>
                     @endforeach
                 @endif
             </div>
