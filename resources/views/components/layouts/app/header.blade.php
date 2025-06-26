@@ -5,5 +5,6 @@
 </head>
 <body class="bc-zinc-400 dark:bg-zinc-800">
 {{ $slot }}
+<x-toast/>
 </body>
 </html>

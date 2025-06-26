@@ -64,9 +64,15 @@ class Search extends Component
             $user->saved_authors = $savedAuthors;
             $user->save();
 
-            $this->dispatch('success', 'Author added to your library');
+            $this->dispatch('notify', [
+                'message' => 'Author saved!',
+                'type' => 'success',
+            ]);
         } else {
-            $this->dispatch('info', 'Author already in your library');
+            $this->dispatch('notify', [
+                'message' => 'Author already saved!',
+                'type' => 'error',
+            ]);
         }
     }
 
@@ -86,9 +92,15 @@ class Search extends Component
             $user->saved_books = $savedBooks;
             $user->save();
 
-            $this->dispatch('success', 'Book added to your library');
+            $this->dispatch('notify', [
+                'message' => 'Book saved!',
+                'type' => 'success',
+            ]);
         } else {
-            $this->dispatch('info', 'Book already in your library');
+            $this->dispatch('notify', [
+                'message' => 'Book already saved!',
+                'type' => 'error',
+            ]);
         }
     }
 
