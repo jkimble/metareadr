@@ -18,7 +18,7 @@
         <x-content.button styling="primary" class="btn-xs" wire:click="saveBook('{{ $book['key'] }}')"
                           :disabled="in_array($book['key'], $savedBooks)">
             <x-icons.heart/>
-            {{ in_array($book['key'], $savedBooks) ? 'Book in Library' : 'Add Book to Library' }}
+            {{ in_array($book['key'], $savedBooks) ? 'Already in Library' : 'Add Book to Library' }}
         </x-content.button>
     </div>
 </article>

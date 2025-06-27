@@ -41,7 +41,7 @@ class searchForm extends Form
                     ->sortByDesc('ratings_average');
             } else {
                 $this->results = collect($response->json('docs'))
-                    ->filter(fn($book) => isset($book['ratings_count']) && $book['ratings_count'] >= 1);
+                    ->filter(fn($book) => isset($book['ratings_count']) && $book['ratings_count'] >= 5);
             }
         } else {
             $this->results = [];
