@@ -5,7 +5,7 @@
     <h3 class="text-xl font-bold">{{ $book['title'] ?? 'Untitled' }}</h3>
     @if(isset($book['author_name']))
         <p class="text-gray-300">
-            Author: {{ is_array($book['author_name']) ? implode(', ', $book['author_name']) : $book['author_name'] }}</p>
+            Author: {{ is_array($book['author_name']) ? implode(', ', array_slice($book['author_name'], 0, 3)) : $book['author_name'] }}</p>
     @endif
     @if(isset($book['first_publish_year']))
         <p class="text-gray-300">Published: {{ $book['first_publish_year'] }}</p>
