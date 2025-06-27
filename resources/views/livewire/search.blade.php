@@ -5,7 +5,7 @@
             <div class="search-results flex flex-row flex-wrap gap-4">
                 @if($type == 'book')
                     @foreach($results as $book)
-                        <x-library.book-card :book="$book"/>
+                        <x-library.book-card :savedBooks="$savedBooks" :book="$book"/>
                     @endforeach
                 @else
                     @foreach($results as $author)
