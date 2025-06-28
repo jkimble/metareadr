@@ -20,6 +20,7 @@ class Search extends Component
     public $savedAuthors;
     public $savedBooks;
     public $authorInfo;
+    public $currentAuthorKey;
 
     public function mount(): void
     {
@@ -109,7 +110,7 @@ class Search extends Component
         }
     }
 
-    public function getAuthorInfo($key)
+    public function getAuthorInfo($key): void
     {
         $url = "https://openlibrary.org/authors/{$key}.json";
         $response = Http::withHeaders([
@@ -118,6 +119,7 @@ class Search extends Component
 
         if ($response->successful()) {
             $this->authorInfo = $response->json();
+            $this->currentAuthorKey = $key;
         }
     }
 
