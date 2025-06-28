@@ -12,8 +12,8 @@
     <p class="text-sm">Rating: {{ round($author['ratings_average'], 2) }}</p>
     <div class="flex flex-row flex-nowrap gap-2 mt-4">
         <x-content.button styling="secondary" class="btn-xs">
-            <x-icons.book/>
-            View Works
+            <x-icons.book-account/>
+            View Author
         </x-content.button>
         <x-content.button styling="primary" class="btn-xs"
                           wire:click="saveAuthor('{{ $author['key'] }}')"

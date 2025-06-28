@@ -8,8 +8,8 @@
             <div class="flex flex-row gap-2">
                 <input wire:model="query" type="text" class="w-full p-3 rounded-lg bg-gray-200"
                        placeholder="search for books, authors, and more">
-                <button type="submit"
-                        class="bg-teal-600 hover:bg-teal-600/60 transition cursor-pointer text-white font-bold text-center rounded px-8 py-2">
+                <button type="submit" class="btn btn-lg btn-primary">
+                    <x-icons.book-search/>
                     search
                 </button>
             </div>
