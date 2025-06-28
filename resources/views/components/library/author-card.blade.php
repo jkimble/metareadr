@@ -2,9 +2,9 @@
 
 <div x-data="{ showModal: false }"
      x-init="showModal = {{ !empty($authorInfo) ? 'true' : 'false' }}"
-     class="flex-[0_1_32%]">
+     class="flex-auto lg:flex-[0_1_32%]">
     <article
-        class="mb-4 p-4 bg-gray-800 border border-gray-800 text-white rounded hover:border-teal-500 transition">
+        class="mb-4 p-4 bg-gray-800 border border-gray-800 h-full text-white rounded hover:border-teal-500 transition">
         <h3 class="text-xl font-bold">{{ $author['name'] }}</h3>
         @if(!empty($author['top_work'] ))
             <p class="text-sm font-bold">
