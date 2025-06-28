@@ -14,11 +14,14 @@
                 @endif
             </div>
             @if($hasMorePages)
-                <div class="flex flex-row justify-center mt-4 text-center">
+                <div class="flex flex-row justify-center items-center mt-4 text-center gap-4">
                     <button wire:click="loadMore"
-                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                            class="btn btn-primary">
                         Load More Results
                     </button>
+                    <div wire:loading class="flex justify-center py-4 text-white">
+                        <x-icons.spinner/>
+                    </div>
                 </div>
             @endif
         @else
