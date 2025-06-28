@@ -1,5 +1,8 @@
 <div>
-    <h1>Search for "{{ $query ?? 'undefined' }}"</h1>
+    <h1>
+        Search for "{{ $query ?? 'undefined' }}"
+        <span class="text-lg italic block">{{ $author ? 'by: "' . $author . '"' : '' }}</span>
+    </h1>
     <x-content.container>
         @if($results->isNotEmpty())
             <div class="search-results flex flex-row flex-wrap gap-4">

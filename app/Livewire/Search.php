@@ -11,6 +11,7 @@ class Search extends Component
 {
     public $query;
     public $type;
+    public $author;
     public $page = 1;
     public $hasMorePages = true;
     public searchForm $search;
@@ -22,9 +23,11 @@ class Search extends Component
     {
         $this->query = Session::has('search_query') ? Session::get('search_query') : '';
         $this->type = Session::has('search_type') ? Session::get('search_type') : 'book';
+        $this->author = Session::has('author') ? Session::get('author') : '';
 
         $this->search->query = $this->query;
         $this->search->type = $this->type;
+        $this->search->author = $this->author;
 
         $this->results = collect();
 

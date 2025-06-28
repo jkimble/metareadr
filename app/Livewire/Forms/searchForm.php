@@ -12,6 +12,7 @@ class searchForm extends Form
     public string $query;
     #[Validate('required|string')]
     public string $type;
+    public string $author;
 
     public $results = [];
 
@@ -19,14 +20,12 @@ class searchForm extends Form
     {
         $url = $this->type === 'author' ? 'https://openlibrary.org/search/authors.json' : 'https://openlibrary.org/search.json';
 
-        $params = [
-            'q' => $this->query,
-            'limit' => 9,
-            'page' => $page,
-        ];
+        $params = ['q' => $this->query, 'limit' => 9];
 
         if ($this->type === 'book') {
             $params['fields'] = 'title,author_name,work_count,ratings_count,first_publish_year,subject,first_sentence,isbn,number_of_pages_median,key';
+            $params['page'] = $page;
+            if ($this->author) $params['author'] = $this->author;
         }
 
         $response = Http::withHeaders([

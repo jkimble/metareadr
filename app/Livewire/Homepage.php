@@ -14,6 +14,7 @@ class Homepage extends Component
     public $query;
     #[Validate('required')]
     public $type;
+    public $author;
 
     #[Title('metareadr')]
     public function render(): object
@@ -27,6 +28,7 @@ class Homepage extends Component
 
         Session::put('search_query', $this->query);
         Session::put('search_type', $this->type);
+        Session::put('author', $this->author);
 
         if (!Auth::user()) {
             Session::put('url.intended', route('search'));
