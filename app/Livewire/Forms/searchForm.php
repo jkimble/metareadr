@@ -25,6 +25,7 @@ class searchForm extends Form
         if ($this->type === 'book') {
             $params['fields'] = 'title,author_name,work_count,ratings_count,first_publish_year,subject,first_sentence,isbn,number_of_pages_median,key';
             $params['page'] = $page;
+            $params['lang'] = 'en';
             if ($this->author) $params['author'] = $this->author;
         }
 
