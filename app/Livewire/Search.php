@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\searchForm;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
@@ -18,6 +19,7 @@ class Search extends Component
     public $results;
     public $savedAuthors;
     public $savedBooks;
+    public $authorInfo;
 
     public function mount(): void
     {
@@ -104,6 +106,18 @@ class Search extends Component
                 'message' => 'Book already saved!',
                 'type' => 'error',
             ]);
+        }
+    }
+
+    public function getAuthorInfo($key)
+    {
+        $url = "https://openlibrary.org/authors/{$key}.json";
+        $response = Http::withHeaders([
+            'User-Agent' => 'metareadr (metareadr@mail.metakimb.dev)'
+        ])->get($url);
+
+        if ($response->successful()) {
+            $this->authorInfo = $response->json();
         }
     }
 
