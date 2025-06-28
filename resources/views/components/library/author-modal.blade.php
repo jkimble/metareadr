@@ -13,6 +13,9 @@
          style="display: none;">
         <div class="bg-gray-800 p-6 rounded-lg shadow-xl max-w-md w-full text-white">
             <div class="flex flex-row flex-nowrap items-start justify-between">
+                <img src="https://covers.openlibrary.org/a/id/{{ $authorInfo['photos'][0] }}-M.jpg"
+                     alt="{{ $authorInfo['name'] }} Cover" width="150"
+                     class="max-h-[150px]" loading="lazy">
                 <div class="flex flex-col gap-2">
                     <h3 class="text-xl font-bold">{{ $authorInfo['name'] ?? '' }} {{ !empty($authorInfo['title']) ? $authorInfo['title'] : '' }}</h3>
                     <p class="text-sm italic">
@@ -28,7 +31,7 @@
                 @if(!empty($authorInfo['bio']))
                     <h4 class="font-bold mb-2">About {{ $authorInfo['name'] }}:</h4>
                     <p class="max-h-36 overflow-y-scroll">
-                        {{ $authorInfo['bio']['value'] }}
+                        {{ !empty($authorInfo['bio']['value']) ? $authorInfo['bio']['value'] : ($authorInfo['bio'] ?? '') }}
                     </p>
                     <span class="text-xs text-center italic">
                         Scroll for more
