@@ -1,5 +1,5 @@
 <div>
-    <h1 class="text-center">metareadr</h1>
+    <h1 class="text-center bg-gradient-to-r from-teal-500 from-20% to-90% to-blue-500 p-4">metareadr</h1>
     <div class="p-8 bg-gray-600 rounded-2xl">
         <h2 class="text-2xl text-white font-bold mb-5">
             find books, authors, and track your reading.
