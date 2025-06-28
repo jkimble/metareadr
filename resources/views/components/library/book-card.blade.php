@@ -2,7 +2,7 @@
 
 <div x-data="{ showModal: false }" class="flex-auto lg:flex-[0_1_32%]">
     <article
-        class="mb-4 p-4 bg-gray-800 border border-gray-800 text-white rounded hover:border-teal-500 transition">
+        class="mb-4 p-4 bg-gray-800 border border-gray-800 h-full text-white rounded hover:border-teal-500 transition">
         <h3 class="text-xl font-bold">{{ $book['title'] ?? 'Untitled' }}</h3>
         @if(isset($book['author_name']))
             <p class="text-gray-300">
@@ -24,5 +24,5 @@
         </div>
     </article>
 
-    <x-library.book-modal :book="$book"/>
+    <x-library.book-modal :book="$book" :savedBooks="$savedBooks"/>
 </div>
