@@ -22,7 +22,6 @@ return new class extends Migration {
             $table->integer('number_of_pages')->nullable();
             $table->integer('cover_i')->nullable();
             $table->string('cover_edition_key')->nullable();
-            $table->json('subjects')->nullable();
             $table->integer('ratings_count')->nullable();
             $table->integer('number_of_pages_median')->nullable();
             $table->text('first_sentence')->nullable();
