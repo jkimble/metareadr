@@ -23,7 +23,7 @@ class searchForm extends Form
         $params = ['q' => $this->query, 'limit' => 9];
 
         if ($this->type === 'book') {
-            $params['fields'] = 'title,author_name,work_count,ratings_count,first_publish_year,subject,first_sentence,isbn,number_of_pages_median,key,cover_i';
+            $params['fields'] = 'title,author_name,author_key,work_count,ratings_count,first_publish_year,subject,first_sentence,isbn,number_of_pages_median,key,cover_i,cover_edition_key';
             $params['page'] = $page;
             $params['lang'] = 'en';
             if ($this->author) $params['author'] = $this->author;
