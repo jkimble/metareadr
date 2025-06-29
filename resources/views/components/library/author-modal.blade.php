@@ -1,5 +1,4 @@
-@props(['authorInfo' => []])
-
+@props(['authorInfo' => [], 'savedAuthors' => []])
 @if(!empty($authorInfo))
     <div x-show="showModal"
          class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
@@ -41,6 +40,13 @@
                     </span>
                 @endif
                 <div class="flex flex-row flex-nowrap items-center justify-between gap-2 mt-4">
+                    {{-- need to strip /author from key string for this to work --}}
+                    <x-content.button styling="primary" class="btn-xs"
+                                      wire:click="saveAuthor('{{ $authorInfo['key'] }}')"
+                                      :disabled="in_array($authorInfo['key'], $savedAuthors)">
+                        <x-icons.heart/>
+                        {{ in_array($authorInfo['key'], $savedAuthors) ? 'Author in Library' : 'Add Author to Library' }}
+                    </x-content.button>
                     <x-content.button styling="secondary" class="btn-xs" @click="showModal = false">
                         <x-icons.close/>
                         Close

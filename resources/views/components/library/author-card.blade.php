@@ -28,5 +28,5 @@
         </div>
     </article>
 
-    <x-library.author-modal :authorInfo="$authorInfo"/>
+    <x-library.author-modal :authorInfo="$authorInfo" :savedAuthors="$savedAuthors"/>
 </div>
