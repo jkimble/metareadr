@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Livewire\Forms\searchForm;
+use App\Models\Author;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -69,6 +70,15 @@ class Search extends Component
             $savedAuthors[] = $authorKey;
             $user->saved_authors = $savedAuthors;
             $user->save();
+
+            $authorData = $this->results->firstWhere('key', $authorKey);
+            if ($authorData) {
+                $author = Author::newAuthor($authorData);
+
+                if (!$user->authors()->where('authors.id', $author->id)->exists()) {
+                    $user->authors()->attach($author->id);
+                }
+            }
 
             $this->dispatch('notify', [
                 'message' => 'Author saved!',
