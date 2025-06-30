@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\searchForm;
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -107,6 +108,15 @@ class Search extends Component
             $savedBooks[] = $bookKey;
             $user->saved_books = $savedBooks;
             $user->save();
+
+            $bookData = $this->results->firstWhere('key', $bookKey);
+            if ($bookData) {
+                $book = Book::newBook($bookData);
+
+                if (!$user->books()->where('books.id', $book->id)->exists()) {
+                    $user->books()->attach($book->id);
+                }
+            }
 
             $this->dispatch('notify', [
                 'message' => 'Book saved!',

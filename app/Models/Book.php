@@ -20,7 +20,6 @@ class Book extends Model
         'first_publish_year',
         'subjects',
         'isbn',
-        'number_of_pages',
         'cover_i',
         'cover_edition_key',
         'ratings_count',
@@ -39,9 +38,31 @@ class Book extends Model
         'isbn' => 'array',
     ];
 
+    public static function newBook(array $bookData): self
+    {
+        $key = str_replace('/works/', '', $bookData['key']);
+        $book = Book::firstOrNew(['key' => $key]);
+        $book->fill([
+            'title' => $bookData['title'],
+            'author_name' => $bookData['author_name'][0],
+            'author_key' => $bookData['author_key'][0],
+            'first_publish_year' => $bookData['first_publish_year'],
+            'subjects' => $bookData['subject'][0],
+            'isbn' => $bookData['isbn'][0],
+            'cover_i' => $bookData['cover_i'],
+            'cover_edition_key' => $bookData['cover_edition_key'],
+            'ratings_count' => $bookData['ratings_count'],
+            'number_of_pages_median' => $bookData['number_of_pages_median'],
+            'first_sentence' => $bookData['first_sentence'][0],
+        ]);
+        $book->save();
+
+        return $book;
+    }
+
     public function Users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class, 'book_users')->withTimestamps();
     }
 
     public function Authors(): BelongsToMany

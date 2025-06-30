@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function books(): BelongsToMany
     {
-        return $this->belongsToMany(Book::class)->withTimestamps();
+        return $this->belongsToMany(Book::class, 'book_users')->withTimestamps();
     }
 
     public function authors(): BelongsToMany

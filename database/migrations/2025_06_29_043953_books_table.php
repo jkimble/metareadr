@@ -19,7 +19,6 @@ return new class extends Migration {
             $table->integer('first_publish_year')->nullable();
             $table->json('subjects')->nullable();
             $table->json('isbn')->nullable();
-            $table->integer('number_of_pages')->nullable();
             $table->integer('cover_i')->nullable();
             $table->string('cover_edition_key')->nullable();
             $table->integer('ratings_count')->nullable();
