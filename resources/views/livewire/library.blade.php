@@ -1,5 +1,5 @@
 <div>
-    <div class="w-full flex flex-row gap-6 bg-gray-600">
+    <div class="w-full flex md:grid md:grid-cols-3 md:auto-rows-min gap-4 px-8 py-4 bg-gray-600">
         <div class="flex flex-col">
             <div class="bg-black rounded p-4 text-white">
                 <h2 class="font-bold text-2xl">Saved Authors</h2>

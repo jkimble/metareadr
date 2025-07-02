@@ -9,10 +9,18 @@
                 </x-content.button>
             @endif
             <div class="spacer"></div>
-            <x-content.button styling="primary" :link="true" href="{{ route('login') }}">
-                <x-icons.user/>
-                {{ Auth::check() ? 'Account' : 'Log In' }}
-            </x-content.button>
+            <div class="flex flex-row gap-4">
+                @if(Auth::check())
+                    <x-content.button styling="primary" :link="true" href="{{ route('library') }}">
+                        <x-icons.book-account/>
+                        Library
+                    </x-content.button>
+                @endif
+                <x-content.button styling="primary" :link="true" href="{{ route('login') }}">
+                    <x-icons.user/>
+                    {{ Auth::check() ? 'Account' : 'Log In' }}
+                </x-content.button>
+            </div>
         </div>
     </div>
 </x-layouts.app.header>

@@ -46,11 +46,11 @@ class Author extends Model
         $author->fill([
             'name' => $authorData['name'],
             'bio' => $bio,
-            'birth_date' => $authorData['birth_date'],
-            'death_date' => $authorData['death_date'],
-            'top_work' => $authorData['top_work'],
-            'ratings_average' => $authorData['ratings_average'],
-            'work_count' => $authorData['work_count'],
+            'birth_date' => $authorData['birth_date'] ?? null,
+            'death_date' => $authorData['death_date'] ?? null,
+            'top_work' => $authorData['top_work'] ?? null,
+            'ratings_average' => $authorData['ratings_average'] ?? null,
+            'work_count' => $authorData['work_count'] ?? null,
         ]);
         $author->save();
 
