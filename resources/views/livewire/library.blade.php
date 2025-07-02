@@ -4,21 +4,7 @@
             <div class="bg-black rounded pt-4 text-white">
                 <h2 class="font-bold text-2xl pb-2 px-4 border-b-2 border-b-teal-500">Saved Authors</h2>
                 @if($authors)
-                    <ul class="text-white">
-                        @foreach($authors as $author)
-                            <li class="flex flex-row flex-nowrap items-center gap-2 px-4 py-2 hover:bg-gray-700/50 transition">
-                                <h4 class="font-bold text-lg">
-                                    {{ $author->name }}
-                                </h4>
-                                <div class="flex flex-row items-center flex-nowrap gap-1">
-                                    {{ round($author->ratings_average, 1) }}
-                                    <span class="text-teal-500">
-                                        <x-icons.star/>
-                                    </span>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                    <x-library.author-list :authors="$authors"/>
                 @else
                     <div class="flex flex-col gap-4">
                         <p class="font-bold text-white text-xl">No authors added to library yet.</p>

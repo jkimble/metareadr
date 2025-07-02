@@ -24,4 +24,8 @@
     &.btn-secondary {
         @apply border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white disabled:bg-blue-400 disabled:text-white disabled:hover:text-white disabled:opacity-60 disabled:cursor-default;
     }
+
+    &.btn-danger {
+        @apply border-red-500 text-red-500 hover:bg-red-500 hover:text-white disabled:bg-red-500 disabled:text-white disabled:hover:text-white disabled:opacity-60 disabled:cursor-default;
+    }
 }
