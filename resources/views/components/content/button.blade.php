@@ -8,7 +8,7 @@
 @endphp
 
 @if ($link)
-    <a {{ $attributes->merge(['class' => $styles]) }}>
+    <a {{ $attributes->merge(['class' => $styles]) }} wire:navigate>
         {{ $slot }}
     </a>
 
