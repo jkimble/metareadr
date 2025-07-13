@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="flex flex-row gap-2">
-                    <a class="btn btn-xs btn-primary">Info</a>
+                    <a class="btn btn-xs btn-primary" wire:click="showAuthorInfo({{ $author->id }})">Info</a>
                     <a class="btn btn-xs btn-secondary">Works</a>
                     <a class="btn btn-xs btn-danger" wire:confirm="Delete author?"
                        wire:click="removeAuthor({{ $author->id }})">Remove</a>

@@ -17,6 +17,8 @@ Route::view('dashboard', 'dashboard')
 Route::middleware(['auth'])->group(function () {
     Route::get('search', Search::class)->name('search');
     Route::get('library', Library::class)->name('library');
+    Route::get('library/authors', \App\Livewire\Library\Authors::class)->name('library.authors');
+    Route::get('library/books', \App\Livewire\Library\Books::class)->name('library.books');
     Route::redirect('settings', 'settings/profile');
 
     Route::get('settings/profile', Profile::class)->name('settings.profile');
