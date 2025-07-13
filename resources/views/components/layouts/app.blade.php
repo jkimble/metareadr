@@ -13,10 +13,11 @@
                 @if(Auth::check())
                     <x-content.button styling="primary" :link="true" href="{{ route('library') }}">
                         <x-icons.book-account/>
-                        Library
+                        My Library
                     </x-content.button>
                 @endif
-                <x-content.button styling="primary" :link="true" href="{{ route('login') }}">
+                <x-content.button styling="primary" :link="true"
+                                  href="{{ Auth::check() ? route('settings.profile') : route('login') }}">
                     <x-icons.user/>
                     {{ Auth::check() ? 'Account' : 'Log In' }}
                 </x-content.button>

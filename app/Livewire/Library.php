@@ -19,11 +19,13 @@ class Library extends Component
         $user = Auth::user();
 
         $authors = $user->authors()->take(3)->get();
+        $authorTotal = $user->authors()->count();
         $books = $user->books()->take(3)->get();
 
         return view('livewire.library', [
             'authors' => $authors,
             'books' => $books,
+            'authorTotal' => $authorTotal,
         ]);
     }
 }

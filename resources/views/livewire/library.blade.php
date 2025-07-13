@@ -2,9 +2,16 @@
     <div class="w-full flex md:grid md:grid-cols-3 md:auto-rows-min gap-4 px-8 py-4 bg-gray-600">
         <div class="flex flex-col">
             <div class="bg-black rounded pt-4 text-white">
-                <h2 class="font-bold text-2xl pb-2 px-4 border-b-2 border-b-teal-500">Saved Authors</h2>
+                <h2 class="font-bold text-2xl pb-2 px-4 border-b-2 border-b-teal-500">
+                    Saved Authors <span class="text-sm font-black">({{ $authorTotal }})</span>
+                </h2>
                 @if($authors ?? null)
                     <x-library.author-list :authors="$authors"/>
+                    <div class="px-4 pb-2 pt-3.5 mb-2 border-t-2 border-t-teal-500">
+                        <a class="btn btn-sm btn-primary !inline">
+                            View All Authors
+                        </a>
+                    </div>
                 @else
                     <div class="flex flex-col gap-4">
                         <p class="font-bold text-white text-xl">No authors added to library yet.</p>
