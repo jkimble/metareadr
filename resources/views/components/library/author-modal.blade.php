@@ -5,7 +5,7 @@
     $title = $authorInfo['title'] ?? '';
     $birthDate = $authorInfo['birth_date'] ?? '';
     $deathDate = $authorInfo['death_date'] ?? '';
-    $bio = $isDbAuthor ? $authorInfo['bio'] : (isset($authorInfo['bio']['value']) ? $authorInfo['bio']['value'] : ($authorInfo['bio'] ?? ''));
+    $bio = $isDbAuthor ? $authorInfo['bio'] : ($authorInfo['bio']['value'] ?? ($authorInfo['bio'] ?? ''));
     $photos = $isDbAuthor ? null : ($authorInfo['photos'] ?? null);
     $key = $isDbAuthor ? $authorInfo['key'] : ($authorInfo['key'] ?? '');
 @endphp

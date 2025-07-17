@@ -45,7 +45,7 @@ class Author extends Model
         $author = self::firstOrNew(['key' => $key]);
         $author->fill([
             'name' => $authorData['name'],
-            'bio' => $bio,
+            'bio' => $bio ?? 'No author biography available.',
             'birth_date' => $authorData['birth_date'] ?? null,
             'death_date' => $authorData['death_date'] ?? null,
             'top_work' => $authorData['top_work'] ?? null,
