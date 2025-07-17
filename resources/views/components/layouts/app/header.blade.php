@@ -3,7 +3,7 @@
 <head>
     @include('partials.head')
 </head>
-<body class="bc-zinc-400 dark:bg-zinc-800">
+<body class="bg-gray-800 pb-12">
 {{ $slot }}
 <x-toast/>
 </body>

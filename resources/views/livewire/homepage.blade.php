@@ -1,12 +1,15 @@
 <div>
-    <h1 class="text-center bg-gradient-to-r from-teal-500 from-20% to-90% to-blue-500 p-4">metareadr</h1>
-    <div class="p-8 bg-gray-600 rounded-2xl">
-        <h2 class="text-2xl text-white font-bold mb-5">
-            find books, authors, and track your reading.
+    <div class="p-8 bg-transparent rounded-2xl border-2 border-teal-500">
+        <h2 class="text-2xl text-white font-bold mb-1">
+            find authors, books, and track your reading
         </h2>
+        <p class="text-white font-sm mb-5">
+            save authors and their works to your library for later
+        </p>
         <form wire:submit="submit">
             <div class="flex flex-row gap-2">
-                <input wire:model="query" type="text" class="w-full p-3 rounded-lg bg-gray-200"
+                <input wire:model="query" type="text"
+                       class="w-full p-3 rounded-lg border border-teal-500 text-white focus:border-white transition"
                        placeholder="search for books, authors, and more">
                 <button type="submit" class="btn btn-lg btn-primary">
                     <x-icons.book-search/>
@@ -33,8 +36,8 @@
                 <div class="flex-col">
                     <label for="author" class="font-bold italic text-sm text-white">Author</label>
                     <input type="text" name="author" wire:model="author"
-                           class="w-full p-3 rounded-lg bg-gray-200 max-w-64"
-                           placeholder="Search books by author">
+                           class="w-full p-3 rounded-lg max-w-64 border border-teal-500 text-white focus:border-white transition"
+                           placeholder="search for books by author">
                 </div>
             </div>
         </form>

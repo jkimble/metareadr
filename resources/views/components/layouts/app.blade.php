@@ -1,5 +1,7 @@
 <x-layouts.app.header :title="$title ?? null">
-    <div class="container max-w-7xl mx-auto mt-20 px-8">
+    <div class="container max-w-7xl mx-auto mt-8 md:mt-20 px-8">
+        <h1 class="italic inline-block text-center border-4 border-teal-500 py-2 px-4">
+            metareadr</h1>
         {{ $slot }}
         <div class="flex flex-row justify-between mt-4">
             @if(!request()->routeIs('home'))
