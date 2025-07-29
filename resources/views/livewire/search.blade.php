@@ -5,7 +5,7 @@
     </h1>
     <x-content.container>
         @if($results->isNotEmpty())
-            <div class="search-results flex flex-row flex-wrap gap-4">
+            <div class="search-results grid grid-cols-12 gap-4">
                 @if($type == 'book')
                     @foreach($results as $book)
                         <x-library.book-card :savedBooks="$savedBooks" :book="$book"

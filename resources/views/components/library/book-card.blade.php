@@ -1,6 +1,6 @@
 @props(['book', 'savedBooks' => []])
 
-<div x-data="{ showModal: false }" class="flex-auto lg:flex-[0_1_32%]">
+<div x-data="{ showModal: false }" class="col-span-12 md:col-span-6 lg:col-span-4">
     <article
         class="mb-4 p-4 bg-gray-800 border border-gray-800 h-full text-white rounded hover:border-teal-500 transition">
         <h3 class="text-xl font-bold">{{ $book['title'] ?? 'Untitled' }}</h3>
