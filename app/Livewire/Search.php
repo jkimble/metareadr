@@ -42,8 +42,7 @@ class Search extends Component
             $this->hasMorePages = count($this->results) == 9;
         }
 
-        $this->savedAuthors = Auth::user()->saved_authors ?? [];
-        $this->savedBooks = Auth::user()->saved_books ?? [];
+        $this->savedBooks = Auth::check() ? Auth::user()->books()->get() : collect();
     }
 
     public function loadMore()
@@ -102,31 +101,19 @@ class Search extends Component
             return;
         }
 
-        $savedBooks = $user->saved_books ?? [];
+        $bookData = $this->results->firstWhere('key', $bookKey);
+        if ($bookData) {
+            $book = Book::newBook($bookData);
 
-        if (!in_array($bookKey, $savedBooks)) {
-            $savedBooks[] = $bookKey;
-            $user->saved_books = $savedBooks;
-            $user->save();
-
-            $bookData = $this->results->firstWhere('key', $bookKey);
-            if ($bookData) {
-                $book = Book::newBook($bookData);
-
-                if (!$user->books()->where('books.id', $book->id)->exists()) {
-                    $user->books()->attach($book->id);
-                }
+            if (!$user->books()->where('books.id', $book->id)->exists()) {
+                $user->books()->attach($book->id);
+                //$this->savedBooks[] = $bookKey;
+                // need to fix dispatch messages
+//                $this->dispatch('notify', [
+//                    'message' => 'Book saved!',
+//                    'type' => 'success',
+//                ]);
             }
-
-            $this->dispatch('notify', [
-                'message' => 'Book saved!',
-                'type' => 'success',
-            ]);
-        } else {
-            $this->dispatch('notify', [
-                'message' => 'Book already saved!',
-                'type' => 'error',
-            ]);
         }
     }
 

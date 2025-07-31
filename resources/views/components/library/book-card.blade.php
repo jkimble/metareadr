@@ -1,4 +1,8 @@
 @props(['book', 'savedBooks' => []])
+@php
+    $bko = $book['key'];
+    $book['key'] = str_replace('/works/', '', $book['key']);
+@endphp
 
 <div x-data="{ showModal: false }" class="col-span-12 md:col-span-6 lg:col-span-4">
     <article
@@ -16,10 +20,10 @@
                 <x-icons.book/>
                 More Details
             </x-content.button>
-            <x-content.button styling="primary" class="btn-xs" wire:click="saveBook('{{ $book['key'] }}')"
-                              :disabled="in_array($book['key'], $savedBooks)">
+            <x-content.button styling="primary" class="btn-xs" wire:click="saveBook('{{ $bko }}')"
+                              :disabled="$savedBooks->contains('key', $book['key'])">
                 <x-icons.heart/>
-                {{ in_array($book['key'], $savedBooks) ? 'Already in Library' : 'Add Book to Library' }}
+                {{ $savedBooks->contains('key', $book['key']) ? 'Already in Library' : 'Add Book to Library' }}
             </x-content.button>
         </div>
     </article>

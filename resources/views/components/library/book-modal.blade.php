@@ -61,9 +61,9 @@
             <div class="flex flex-row flex-nowrap items-center justify-between gap-2 mt-4">
                 @if($key)
                     <x-content.button styling="primary" class="btn-xs" wire:click="saveBook('{{ $key }}')"
-                                      :disabled="in_array($key, $savedBooks)">
+                                      :disabled="$savedBooks->contains('key', $book['key']) ">
                         <x-icons.heart/>
-                        {{ in_array($key, $savedBooks) ? 'Already in Library' : 'Add Book to Library' }}
+                        {{ $savedBooks->contains('key', $book['key']) ? 'Already in Library' : 'Add Book to Library' }}
                     </x-content.button>
                 @endif
                 <x-content.button styling="secondary" class="btn-xs"
