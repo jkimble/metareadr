@@ -14,6 +14,28 @@
         $book['first_sentence'] :
         (isset($book['first_sentence']) && is_array($book['first_sentence']) ? $book['first_sentence'][0] ?? '' : '');
     $key = $isDbBook ? $book['key'] : ($book['key'] ?? '');
+
+    // Compute a safe flag for whether the book is already saved, even if $savedBooks is an array
+    $currentKey = $book['key'] ?? null;
+    $alreadySaved = false;
+    if ($currentKey) {
+        $alreadySaved = collect($savedBooks)->contains(function ($b) use ($currentKey) {
+            if (is_array($b)) {
+                return ($b['key'] ?? null) === $currentKey;
+            }
+            if (is_object($b)) {
+                // Try object property or attribute access
+                $val = null;
+                if (isset($b->key)) {
+                    $val = $b->key;
+                } elseif (method_exists($b, 'getAttribute')) {
+                    $val = $b->getAttribute('key');
+                }
+                return $val === $currentKey;
+            }
+            return false;
+        });
+    }
 @endphp
 <div x-show="showModal"
      class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
@@ -61,9 +83,9 @@
             <div class="flex flex-row flex-nowrap items-center justify-between gap-2 mt-4">
                 @if($key)
                     <x-content.button styling="primary" class="btn-xs" wire:click="saveBook('{{ $key }}')"
-                                      :disabled="$savedBooks->contains('key', $book['key']) ">
+                                      :disabled="$alreadySaved">
                         <x-icons.heart/>
-                        {{ $savedBooks->contains('key', $book['key']) ? 'Already in Library' : 'Add Book to Library' }}
+                        {{ $alreadySaved ? 'Already in Library' : 'Add Book to Library' }}
                     </x-content.button>
                 @endif
                 <x-content.button styling="secondary" class="btn-xs"

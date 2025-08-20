@@ -7,12 +7,20 @@
         </a>
         {{ $slot }}
         <div class="flex flex-row justify-between mt-4">
-            @if(!request()->routeIs('home'))
-                <x-content.button styling="secondary" :link="true" href="{{ route('home') }}">
-                    <x-icons.book-search/>
-                    Back to Search
-                </x-content.button>
-            @endif
+            <div class="flex flex-row gap-2">
+                @if(!request()->routeIs('home'))
+                    <x-content.button styling="secondary" :link="true" href="{{ route('home') }}">
+                        <x-icons.book-search/>
+                        Back to Search
+                    </x-content.button>
+                    @if(request()->routeIs('library.*'))
+                        <x-content.button styling="secondary" :link="true" href="{{ route('library') }}">
+                            <x-icons.arrow-left/>
+                            Back to Library
+                        </x-content.button>
+                    @endif
+                @endif
+            </div>
             <div class="spacer"></div>
             <div class="flex flex-row gap-4">
                 @if(Auth::check())
