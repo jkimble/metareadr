@@ -9,6 +9,7 @@
                 type="password"
                 required
                 autocomplete="current-password"
+                class="text-white"
             />
             <flux:input
                 wire:model="password"
@@ -16,6 +17,7 @@
                 type="password"
                 required
                 autocomplete="new-password"
+                class="text-white"
             />
             <flux:input
                 wire:model="password_confirmation"
@@ -23,14 +25,15 @@
                 type="password"
                 required
                 autocomplete="new-password"
+                class="text-white"
             />
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
+                    <button type="submit" class="btn btn-lg btn-primary w-full">{{ __('Save') }}</button>
                 </div>
 
-                <x-action-message class="me-3" on="password-updated">
+                <x-action-message class="me-3 text-white" on="password-updated">
                     {{ __('Saved.') }}
                 </x-action-message>
             </div>
